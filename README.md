@@ -1,2 +1,3 @@
 # SwiftPOGL
-A protocol-oriented graph library in Swift
+
+SwiftPOGL is a protocol-oriented graph library for the Swift programming language.
