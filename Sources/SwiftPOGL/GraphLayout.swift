@@ -18,6 +18,9 @@ public protocol GraphLayout<GraphType> where GraphType: Graph {
     /// Recompute the positions of the nodes in the graph with the layout's frame
     func layout(graph: GraphType)
 
+    /// Move a node to a specific point
+    func move(node: GraphType.NodeType, to point: CGPoint)
+
     /// Returns the co-ordinates of the node in the layout's frame
     func position(for node: GraphType.NodeType) -> CGPoint
 

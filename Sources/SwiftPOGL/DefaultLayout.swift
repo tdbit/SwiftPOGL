@@ -35,6 +35,10 @@ open class DefaultLayout<T: Graph>: GraphLayout {
         }
     }
 
+    open func move(node: T.NodeType, to point: CGPoint) {
+        positions[node] = point
+    }
+
     open func position(for node: T.NodeType) -> CGPoint {
         positions[node]!
     }
