@@ -49,4 +49,17 @@ final class SwiftPOGLTests: XCTestCase {
         XCTAssertEqual(digraph.degree(of: 1), 3, "A node's degree should equal the number of its edges")
         XCTAssertEqual(digraph.neighbors(of: 1), [2, 3, 4], "A node's neighbours should be the set of nodes it is connected to")
     }
+
+    func testScale() throws {
+        let nodes = [1,2,3,4,5]
+        let edges = [(1,2), (1,3), (4,1), (4,5)]
+        let graph = UndirectedGraph(nodes: nodes, edges: edges)
+        let digraph = DirectedGraph(nodes: nodes, edges: edges)
+
+        XCTAssertEqual(graph.order, 5, "The order of a graph should be the number of its nodes")
+        XCTAssertEqual(digraph.order, 5, "The order of a digraph should be the number of its nodes")
+
+        XCTAssertEqual(graph.size, 4, "The order of a graph should be the number of its nodes")
+        XCTAssertEqual(digraph.size, 4, "The order of a digraph should be the number of its nodes")
+    }
 }

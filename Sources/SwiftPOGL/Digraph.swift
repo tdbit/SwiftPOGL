@@ -22,3 +22,17 @@ public protocol Digraph<NodeType, EdgeType> where NodeType: Node, EdgeType:Arc, 
 
     init(nodes: [NodeType], edges:[(NodeType, NodeType)])
 }
+
+
+public extension Digraph {
+
+    /// The size of a graph or digraph is its number of edges
+    var size: Int {
+        edges.count
+    }
+
+    /// The order of a graph or digraph is its number of nodes
+    var order: Int {
+        nodes.count
+    }
+}
