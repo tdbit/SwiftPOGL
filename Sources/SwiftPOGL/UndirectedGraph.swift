@@ -8,14 +8,14 @@
 import Foundation
 
 /// An `UndirectedEdge` 
-struct UndirectedEdge<T:Node>:Edge {
-    typealias NodeType = T
+public struct UndirectedEdge<T:Node>:Edge {
+    public typealias NodeType = T
 
-    var u: T
+    public var u: T
 
-    var v: T
+    public var v: T
 
-    init?(_ u: T, _ v: T) {
+    public init?(_ u: T, _ v: T) {
         guard u != v else { return nil }
         self.u = u
         self.v = v
@@ -24,27 +24,27 @@ struct UndirectedEdge<T:Node>:Edge {
 
 
 extension UndirectedEdge: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         "(\(u),\(v))"
     }
 }
 
 
-class UndirectedGraph<T:Node>: Graph {
-    typealias NodeType = T
+public class UndirectedGraph<T:Node>: Graph {
+    public typealias NodeType = T
 
-    typealias EdgeType = UndirectedEdge<T>
+    public typealias EdgeType = UndirectedEdge<T>
 
-    var nodes: Set<NodeType> = []
+    public var nodes: Set<NodeType> = []
 
-    var edges: Set<EdgeType> = []
+    public var edges: Set<EdgeType> = []
 
-    required init(nodes: Set<T>, edges: Set<UndirectedEdge<T>>) {
+    public required init(nodes: Set<T>, edges: Set<UndirectedEdge<T>>) {
         self.nodes = nodes
         self.edges = edges
     }
 
-    required init(nodes: [NodeType], edges: [(NodeType, NodeType)]) {
+    public required init(nodes: [NodeType], edges: [(NodeType, NodeType)]) {
         self.nodes = Set(nodes)
         self.edges = Set(edges.compactMap { EdgeType($0.0, $0.1) })
     }
@@ -52,7 +52,7 @@ class UndirectedGraph<T:Node>: Graph {
 
 
 extension UndirectedGraph: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         """
 Nodes: \(nodes.description)
 Edges: \(edges.description)

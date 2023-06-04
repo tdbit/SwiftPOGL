@@ -13,13 +13,13 @@ public protocol Edge<NodeType>: Arc {}
 extension Edge {
 
     // Two Edges are equal if their nodes are the same in any order
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         (lhs.u == rhs.u && lhs.v == rhs.v) ||
         (lhs.u == rhs.v && lhs.v == rhs.u)
     }
 
     // The order of the nodes does not matter when generating a hash value
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(u.hashValue ^ v.hashValue)
     }
 }

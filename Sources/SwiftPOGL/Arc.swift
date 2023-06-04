@@ -25,18 +25,18 @@ public protocol Arc<NodeType>: Hashable {
 extension Arc {
 
     // Two Arcs are equal only if the nodes are the same and in the same order
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.u == rhs.u && lhs.v == rhs.v
     }
 
     // The order of combination matters when hashing an Arc
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(u)
         hasher.combine(v)
     }
 
     /// An Edge is incident with a Node if the node is either of its endpoints.
-    func isIncident(with node:NodeType) -> Bool {
+    public func isIncident(with node:NodeType) -> Bool {
         u == node || v == node
     }
 }

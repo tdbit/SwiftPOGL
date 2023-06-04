@@ -8,14 +8,14 @@
 import Foundation
 
 /// An `DirectedEdge`
-struct DirectedEdge<T:Node>:Arc {
-    typealias NodeType = T
+public struct DirectedEdge<T:Node>:Arc {
+    public typealias NodeType = T
 
-    var u: T
+    public var u: T
 
-    var v: T
+    public var v: T
 
-    init?(_ u: T, _ v: T) {
+    public init?(_ u: T, _ v: T) {
         guard u != v else { return nil }
         self.u = u
         self.v = v
@@ -24,27 +24,27 @@ struct DirectedEdge<T:Node>:Arc {
 
 
 extension DirectedEdge: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         "(\(u),\(v))"
     }
 }
 
 
-class DirectedGraph<T:Node>: Digraph {
-    typealias NodeType = T
+public class DirectedGraph<T:Node>: Digraph {
+    public typealias NodeType = T
 
-    typealias EdgeType = DirectedEdge<T>
+    public typealias EdgeType = DirectedEdge<T>
 
-    var nodes: Set<NodeType> = []
+    public var nodes: Set<NodeType> = []
 
-    var edges: Set<EdgeType> = []
+    public var edges: Set<EdgeType> = []
 
-    required init(nodes: Set<T>, edges: Set<DirectedEdge<T>>) {
+    public required init(nodes: Set<T>, edges: Set<DirectedEdge<T>>) {
         self.nodes = nodes
         self.edges = edges
     }
 
-    required init(nodes: [NodeType], edges: [(NodeType, NodeType)]) {
+    public required init(nodes: [NodeType], edges: [(NodeType, NodeType)]) {
         self.nodes = Set(nodes)
         self.edges = Set(edges.compactMap { EdgeType($0.0, $0.1) })
     }
@@ -52,7 +52,7 @@ class DirectedGraph<T:Node>: Digraph {
 
 
 extension DirectedGraph: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         """
 Nodes: \(nodes.description)
 Edges: \(edges.description)
