@@ -8,14 +8,14 @@
 import Foundation
 
 /// The `DefaultLayout` lays out a graph as an ordered circle of nodes.
-public class DefaultLayout<T: Graph>: GraphLayout {
+open class DefaultLayout<T: Graph>: GraphLayout {
     public typealias GraphType = T
 
     internal var positions:[GraphType.NodeType: CGPoint] = [:]
 
     public var frame: CGRect = CGRect()
 
-    public func layout(graph: T) {
+    open func layout(graph: T) {
         guard frame.size.width * frame.size.height > 0 else {
             fatalError("Unable to layout graph in zero-sized frame")
         }
@@ -35,9 +35,12 @@ public class DefaultLayout<T: Graph>: GraphLayout {
         }
     }
 
-    public func position(for node: T.NodeType) -> CGPoint {
+    open func position(for node: T.NodeType) -> CGPoint {
         positions[node]!
     }
 
+    public init(positions: [GraphType.NodeType : CGPoint] = [:], frame: CGRect = CGRect()) {
+        self.positions = positions
+        self.frame = frame
+    }
 }
-

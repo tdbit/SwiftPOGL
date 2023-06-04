@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// An `DirectedEdge`
+/// A `DirectedEdge`
 public struct DirectedEdge<T:Node>:Arc {
     public typealias NodeType = T
 
@@ -30,7 +30,7 @@ extension DirectedEdge: CustomStringConvertible {
 }
 
 
-public class DirectedGraph<T:Node>: Digraph {
+open class DirectedGraph<T:Node>: Digraph {
     public typealias NodeType = T
 
     public typealias EdgeType = DirectedEdge<T>

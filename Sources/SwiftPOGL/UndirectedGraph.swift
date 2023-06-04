@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// An `UndirectedEdge` 
+/// An `UndirectedEdge`
 public struct UndirectedEdge<T:Node>:Edge {
     public typealias NodeType = T
 
@@ -30,7 +30,7 @@ extension UndirectedEdge: CustomStringConvertible {
 }
 
 
-public class UndirectedGraph<T:Node>: Graph {
+open class UndirectedGraph<T:Node>: Graph {
     public typealias NodeType = T
 
     public typealias EdgeType = UndirectedEdge<T>
