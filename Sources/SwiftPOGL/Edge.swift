@@ -23,14 +23,3 @@ extension Edge {
         hasher.combine(u.hashValue ^ v.hashValue)
     }
 }
-
-
-// MARK: Convenience methods on Foundation collections
-
-extension Set where Element: Edge {
-
-    public subscript(of node: Element.NodeType) -> Set<Element> {
-        filter { $0.u == node || $0.v == node }
-    }
-}
-
