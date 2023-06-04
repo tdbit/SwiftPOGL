@@ -13,9 +13,9 @@ open class DefaultLayout<T: Graph>: GraphLayout {
 
     internal var positions:[GraphType.NodeType: CGPoint] = [:]
 
-    public var frame: CGRect = CGRect()
+    public required init() {}
 
-    open func layout(graph: T) {
+    open func layout(graph: T, in frame: CGRect) {
         guard frame.size.width * frame.size.height > 0 else {
             fatalError("Unable to layout graph in zero-sized frame")
         }
@@ -41,10 +41,5 @@ open class DefaultLayout<T: Graph>: GraphLayout {
 
     open func position(for node: T.NodeType) -> CGPoint {
         positions.isEmpty ? CGPoint() : positions[node]!  // All positions are zero prior to layout
-    }
-
-    public init(positions: [GraphType.NodeType : CGPoint] = [:], frame: CGRect = CGRect()) {
-        self.positions = positions
-        self.frame = frame
     }
 }
