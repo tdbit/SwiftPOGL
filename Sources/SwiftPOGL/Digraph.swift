@@ -8,7 +8,7 @@
 import Foundation
 
 /// A `Digraph` is a set Arcs (i.e. directed Edges) and Nodes.
-protocol Digraph<NodeType, EdgeType> where NodeType: Node, EdgeType:Arc, NodeType == EdgeType.NodeType {
+public protocol Digraph<NodeType, EdgeType> where NodeType: Node, EdgeType:Arc, NodeType == EdgeType.NodeType {
     associatedtype NodeType: Node
     associatedtype EdgeType: Arc<NodeType>
 

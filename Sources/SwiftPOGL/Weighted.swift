@@ -13,10 +13,10 @@ import Foundation
 /// struct level.  We define a `Weighable` typealias that is both `Hashable` and `Numeric`
 /// to help with autogeneration of `Hashable` methods for types that conform to the
 /// ``Weighted`` protocol.
-typealias Weighable = Hashable & Numeric
+public typealias Weighable = Hashable & Numeric
 
 /// All `Weighted` types provide a typed numeric weight.
-protocol Weighted<Weight> {
+public protocol Weighted<Weight> {
 
     associatedtype Weight: Hashable & Numeric
 
@@ -28,7 +28,7 @@ protocol Weighted<Weight> {
 // MARK: Simple type conformance
 
 extension Double: Weighted {
-    typealias Weight = Self
+    public typealias Weight = Self
 
-    var weight: Self { self }
+    public var weight: Self { self }
 }

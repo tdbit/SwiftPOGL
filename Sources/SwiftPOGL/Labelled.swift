@@ -8,7 +8,7 @@
 import Foundation
 
 /// A `Labelled` type provides a string label.
-protocol Labelled {
+public protocol Labelled {
 
     /// The type's read-only string label.
     var label: String { get }
@@ -18,11 +18,11 @@ protocol Labelled {
 // MARK: Simple type protocol conformance
 
 extension String: Labelled {
-    var label: String { self }
+    public var label: String { self }
 }
 
 extension Int: Labelled {
-    var label: String { description }
+    public var label: String { description }
 }
 
 

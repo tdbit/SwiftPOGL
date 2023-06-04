@@ -8,7 +8,7 @@
 import Foundation
 
 /// A `Graph` is a set of Edges and Nodes.
-protocol Graph<NodeType, EdgeType> where NodeType: Node, EdgeType:Edge, NodeType == EdgeType.NodeType {
+public protocol Graph<NodeType, EdgeType> where NodeType: Node, EdgeType:Edge, NodeType == EdgeType.NodeType {
     associatedtype NodeType: Node
     associatedtype EdgeType: Edge<NodeType>
 

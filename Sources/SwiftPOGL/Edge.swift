@@ -8,7 +8,7 @@
 import Foundation
 
 /// An `Edge` is an unordered pair of `Node` types.
-protocol Edge<NodeType>: Arc {}
+public protocol Edge<NodeType>: Arc {}
 
 extension Edge {
 
