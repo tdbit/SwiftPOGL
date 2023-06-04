@@ -40,7 +40,7 @@ open class DefaultLayout<T: Graph>: GraphLayout {
     }
 
     open func position(for node: T.NodeType) -> CGPoint {
-        positions[node]!
+        positions.isEmpty ? CGPoint() : positions[node]!  // All positions are zero prior to layout
     }
 
     public init(positions: [GraphType.NodeType : CGPoint] = [:], frame: CGRect = CGRect()) {
