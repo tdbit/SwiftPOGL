@@ -51,11 +51,4 @@ open class UndirectedGraph<T:Node>: Graph {
 }
 
 
-extension UndirectedGraph: CustomStringConvertible {
-    public var description: String {
-        """
-Nodes: \(nodes.description)
-Edges: \(edges.description)
-"""
-    }
-}
+extension UndirectedGraph: CustomStringConvertible where NodeType: Comparable {}

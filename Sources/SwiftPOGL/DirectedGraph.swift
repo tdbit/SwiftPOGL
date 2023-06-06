@@ -49,13 +49,3 @@ open class DirectedGraph<T:Node>: Digraph {
         self.edges = Set(edges.compactMap { EdgeType($0.0, $0.1) })
     }
 }
-
-
-extension DirectedGraph: CustomStringConvertible {
-    public var description: String {
-        """
-Nodes: \(nodes.description)
-Edges: \(edges.description)
-"""
-    }
-}
