@@ -8,9 +8,9 @@
 import Foundation
 
 /// A `GraphLayout` lays out and stores the positions of a graph's nodes in a given frame.
-public protocol GraphLayout<GraphType> where GraphType: Graph {
+public protocol GraphLayout {
 
-    associatedtype GraphType
+    associatedtype GraphType: Graph
 
     /// Compute the positions of the nodes in the graph within the provided frame
     func layout(graph: GraphType, in frame: CGRect)

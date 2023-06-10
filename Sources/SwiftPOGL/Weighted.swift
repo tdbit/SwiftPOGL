@@ -16,7 +16,7 @@ import Foundation
 public typealias Weighable = Hashable & Numeric
 
 /// All `Weighted` types provide a typed numeric weight.
-public protocol Weighted<Weight> {
+public protocol Weighted {
 
     associatedtype Weight: Hashable & Numeric
 

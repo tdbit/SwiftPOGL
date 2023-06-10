@@ -8,7 +8,7 @@
 import Foundation
 
 /// An `Arc` is an ordered pair of ``Node`` types.
-public protocol Arc<NodeType>: Hashable {
+public protocol Arc: Hashable {
 
     /// The type of the nodes that are connected by the `Arc`
     associatedtype NodeType:Node
