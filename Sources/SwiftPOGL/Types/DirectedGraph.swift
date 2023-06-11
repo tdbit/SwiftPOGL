@@ -23,6 +23,13 @@ public struct DirectedEdge<T:Node>:Arc {
 }
 
 
+extension DirectedEdge: Reversible {
+    public func reversed() -> DirectedEdge<T> {
+        Self(v,u)!
+    }
+}
+
+
 extension DirectedEdge: CustomStringConvertible {
     public var description: String {
         "(\(u),\(v))"

@@ -51,4 +51,4 @@ open class UndirectedGraph<T:Node>: Graph {
 }
 
 
-extension UndirectedGraph: CustomStringConvertible where NodeType: Comparable {}
+extension UndirectedGraph: CustomStringConvertible {}

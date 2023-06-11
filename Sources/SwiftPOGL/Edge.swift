@@ -43,7 +43,7 @@ extension Edge {
         self.u == u || self.v == u
     }
 
-    /// Returns whether the nodes are the edge's endpoints
+    /// Returns whether the nodes are the edge's endpoints (in either order)
     public func joins(_ u: NodeType, _ v:NodeType) -> Bool {
         (self.u == u && self.v == v) || (self.v == u && self.u == v)
     }

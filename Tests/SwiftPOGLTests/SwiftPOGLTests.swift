@@ -1,3 +1,10 @@
+//
+//  SwiftPOGLTests.swift
+//  SwiftPOGL
+//
+//  Created by Tom Drummond on 6/3/23.
+//
+
 import XCTest
 @testable import SwiftPOGL
 
@@ -9,12 +16,34 @@ final class SwiftPOGLTests: XCTestCase {
         XCTAssertNotEqual(toEdge, fromEdge, "Node order should matter in an directed graph")
     }
 
+    func testReversedEdge() throws {
+        let toEdge = DirectedEdge(1,2)
+        let fromEdge = DirectedEdge(2,1)
+
+
+        XCTAssertEqual(toEdge, fromEdge?.reversed(), "A directed edge's reverse is the edge with the nodes swapped")
+        XCTAssertEqual(fromEdge, toEdge?.reversed(), "A directed edge's reverse is the edge with the nodes swapped")
+        XCTAssertEqual(toEdge, toEdge?.reversed().reversed(), "A reversed directed edge reverse is the same as the edge")
+    }
+
     func testStringDirectedGraph() throws {
         let nodes = [1, 2, 3, 4, 4, 4]
         let edges = [(1,2), (2,1), (3,1), (1,3), (4,1), (1,4), (1,4)]
         let graph = DirectedGraph(nodes: nodes, edges: edges)
         XCTAssertEqual(graph.nodes.count, 4, "All nodes in a directed graph should be unique")
         XCTAssertEqual(graph.edges.count, 6, "")
+    }
+
+    func testReversedGraph() throws {
+        let nodes = [1, 2, 3, 4]
+        let clockwiseEdges = [(1,2), (2,3), (3,4), (4,1)]
+        let anticlockwiseEdges = [(1,4), (4,3), (3,2), (2,1)]
+
+        let clockwiseGraph = DirectedGraph(nodes: nodes, edges: clockwiseEdges)
+        let anticlockwiseGraph = DirectedGraph(nodes: nodes, edges: anticlockwiseEdges)
+
+        XCTAssertEqual(clockwiseGraph, anticlockwiseGraph.reversed(), "A reversed directed graph's edges")
+        XCTAssertEqual(anticlockwiseGraph, clockwiseGraph.reversed(), "A reversed directed graph's edges")
     }
 
     func testUndirectedGraph() throws {

@@ -8,4 +8,4 @@
 import Foundation
 
 /// A `Digraph` is a set of Arcs (i.e. directed Edges) and Nodes.
-public protocol Digraph: Graph where EdgeType: Arc { }
+public protocol Digraph: Graph & Reversible where EdgeType: Arc {}

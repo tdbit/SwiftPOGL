@@ -8,7 +8,7 @@
 import Foundation
 
 /// A `Graph` is a set of Edges and Nodes.
-public protocol Graph where NodeType == EdgeType.NodeType {
+public protocol Graph: Equatable where NodeType == EdgeType.NodeType {
 
     associatedtype NodeType: Node
     associatedtype EdgeType: Edge
@@ -19,9 +19,9 @@ public protocol Graph where NodeType == EdgeType.NodeType {
     /// The graph's set of edges
     var edges: Set<EdgeType> { get }
 
-    init(nodes:Set<NodeType>, edges:Set<EdgeType>)
+    init(nodes: Set<NodeType>, edges: Set<EdgeType>)
 
-    init(nodes: [NodeType], edges:[(NodeType, NodeType)])
+    init(nodes: [NodeType], edges: [(NodeType, NodeType)])
 }
 
 
