@@ -39,18 +39,24 @@ extension Edge {
 extension Edge {
 
     /// Returns whether an edge is incident on a node i.e. if the node is either of its endpoints.
-    public func isIncident(on u:NodeType) -> Bool {
+    @inlinable public func isIncident(on u:NodeType) -> Bool {
         self.u == u || self.v == u
     }
 
+    /// Returns whether the edge is incident with another edge i.e. if either of the edge's
+    /// endpoints are the same as the other edge's endpoints.
+    @inlinable public func isIncident(with edge: Self) -> Bool {
+        isIncident(on: edge.u) || isIncident(on: edge.v)
+    }
+
     /// Returns whether the nodes are the edge's endpoints (in either order)
-    public func joins(_ u: NodeType, _ v:NodeType) -> Bool {
+    @inlinable public func joins(_ u: NodeType, _ v:NodeType) -> Bool {
         (self.u == u && self.v == v) || (self.v == u && self.u == v)
     }
 
     /// If the edge contains the node this method returns the edge's other node.
     /// Returns nil if the edge doesn't contain the node provided.
-    public func neighbor(of node: NodeType) -> NodeType? {
+    @inlinable public func neighbor(of node: NodeType) -> NodeType? {
         switch(node) {
         case u: return v
         case v: return u
