@@ -7,11 +7,12 @@
 
 import Foundation
 
-extension Digraph {
+
+extension Graph {
 
     /// The degree of a node is the number of edges that are incident with it.
     public func degree(of node: NodeType) -> Int {
-        edges.reduce(0) { $1.isIncident(with: node) ? $0 + 1 : $0 }
+        edges.reduce(0) { $1.isIncident(on: node) ? $0 + 1 : $0 }
     }
 
     /// The neighbors of a node are the set of nodes that it is adjacent to (i.e. that are
