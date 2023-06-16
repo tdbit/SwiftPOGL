@@ -63,7 +63,7 @@ final class SwiftPOGLFoundationTests: XCTestCase {
             XCTAssertTrue(distinct, "Every pair in an array of distinct pairs should be distinct.")
         }
 
-        for i in 1...count {
+        for i in 0...count {
             let pairs = array.randomDistinctPairs(count: i)
             let distinct = pairs.allSatisfy { $0.0 != $0.1 }
             XCTAssertEqual(pairs.count, i, "Number of distinct pairs returned should be \(i).")
