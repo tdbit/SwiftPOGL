@@ -16,16 +16,8 @@ extension Set {
     /// the original set. If `count` is greater than the size of the original set it
     /// will return the whole set.  If count is negative will return an empty set.
     public func randomSubset(count n: Int?) -> Self {
-        let sizeOfSubset = n ?? Int.random(in: 0...count)
-
-        guard sizeOfSubset < count else {
-            return Self(self)
-        }
-
-        var set = Self()
-        while set.count < sizeOfSubset {
-            set.insert(randomElement()!)
-        }
-        return set
+        let size = n ?? Int.random(in: 0...count)
+        let bound = Swift.max(0, size)
+        return Set(shuffled()[0..<bound])
     }
 }
