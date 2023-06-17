@@ -91,4 +91,33 @@ final class SwiftPOGLTests: XCTestCase {
         XCTAssertEqual(graph.size, 4, "The order of a graph should be the number of its nodes")
         XCTAssertEqual(digraph.size, 4, "The order of a digraph should be the number of its nodes")
     }
+
+    func testRandomGraph() throws {
+        let count = 5
+        let n = 10
+
+        for _ in 1...count {
+            let p = Double.random(in: 0.0...1.0)
+            let g = UndirectedGraph<Int>.random(n: n, p: p)
+            XCTAssertEqual(g.order, n, "The order of a graph should be the number of its nodes")
+//            print("P(\(String(format: "%.2f", p))", "Edges:", g.edges.count)
+        }
+    }
+
+    func testRandomSubgraph() throws {
+        let count = 5
+        let nodes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        for _ in 1...count {
+            let graph = UndirectedGraph.random(from: nodes, p: 0.5)
+
+            for j in 1...graph.order {
+                let subgraph = graph.randomSubgraph(order: j)!
+
+                XCTAssertTrue(subgraph.edges.nodes.isSubset(of:subgraph.nodes), "The nodes of every edge must belong to the subgraph")
+                XCTAssertTrue(subgraph.nodes.isSubset(of: graph.nodes), "Every node in the subgraph must be in the supergraph")
+                XCTAssertTrue(subgraph.edges.isSubset(of: graph.edges), "Every edge in the subgraph must be in the supergraph")
+            }
+        }
+    }
 }

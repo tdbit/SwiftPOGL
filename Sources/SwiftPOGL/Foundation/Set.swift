@@ -17,7 +17,7 @@ extension Set {
     /// will return the whole set.  If count is negative will return an empty set.
     public func randomSubset(count n: Int?) -> Self {
         let size = n ?? Int.random(in: 0...count)
-        let bound = Swift.max(0, size)
+        let bound = Swift.min(Swift.max(0, size), count)
         return Set(shuffled()[0..<bound])
     }
 }
