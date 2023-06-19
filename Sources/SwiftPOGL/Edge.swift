@@ -10,13 +10,13 @@ import Foundation
 /// An `Edge` is an unordered pair of `Node` types.
 public protocol Edge: Hashable {
 
-    /// The type of the nodes that are connected by the `Arc`
+    /// The type of the nodes that are connected by the `Edge`
     associatedtype NodeType:Node
 
-    /// The first Node in the Arc i.e. the source or "from" node
+    /// The first `Node` in the `Edge` or `Arc`. In an `Arc` this is the source or "from" node.
     var u: NodeType { get }
 
-    /// The second Node in the Arc i.e. the destination or "to" node
+    /// The second `Node` in the `Edge` or `Arc`. In an `Arc` this is the destination or "to" node.
     var v: NodeType { get }
 }
 
@@ -39,18 +39,18 @@ extension Edge {
 extension Edge {
 
     /// Returns whether an edge is incident on a node i.e. if the node is either of its endpoints.
-    @inlinable public func isIncident(on u:NodeType) -> Bool {
-        self.u == u || self.v == u
+    @inlinable public func isIncident(on node:NodeType) -> Bool {
+        u == node || v == node
     }
 
     /// Returns whether the edge is incident with another edge i.e. if either of the edge's
     /// endpoints are the same as the other edge's endpoints.
     @inlinable public func isIncident(with edge: Self) -> Bool {
-        isIncident(on: edge.u) || isIncident(on: edge.v)
+        u == edge.u || u == edge.v || v == edge.u || v == edge.v
     }
 
     /// Returns whether the nodes are the edge's endpoints (in either order)
-    @inlinable public func joins(_ u: NodeType, _ v:NodeType) -> Bool {
+    @inlinable public func joins(_ u: NodeType, _ v: NodeType) -> Bool {
         (self.u == u && self.v == v) || (self.v == u && self.u == v)
     }
 
