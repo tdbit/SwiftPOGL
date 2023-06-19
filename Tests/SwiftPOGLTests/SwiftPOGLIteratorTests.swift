@@ -95,36 +95,59 @@ final class SwiftPOGLIteratorTests: XCTestCase {
     }
 
     func testBreadthFirstSearch() {
+        //         1
+        //        / \
+        //       2–––3
+        //      / \ / \
+        //     4–––5–––6
+        //    / \ / \ / \
+        //   7–––8–––9–––10
         let nodes = Array(1...10).map { $0 }
-        let edges = [(1,2), (1,3), (2,4), (2,5), (3,5), (3, 6), (4,7), (4,8), (5,8), (5,9), (6,9), (6,10)]
+        let edges = [(1,2), (2,3), (1,3),
+                     (2,4), (4,5), (2,5), (3,5), (5,6), (3,6),
+                     (4,7), (7,8), (4,8), (5,8), (8,9), (5,9), (6,9), (9,10), (6,10)]
         let graph = UndirectedGraph(nodes: nodes, edges: edges)
-        var iterator = BreadthFirstSearch(graph: graph, from: 1)
 
-        var output:[Int] = []
-        while let next = iterator.next() {
-            output.append(next)
+        let tests = [(1, [1,2,3,4,5,6,7,8,9,10]),
+                     (7, [7,4,8,2,5,9,1,3,6,10]),
+                     (5, [5,2,3,4,6,8,9,1,7,10])]
+
+        for test in tests {
+            var iterator = BreadthFirstSearch(graph: graph, from: test.0)
+            var steps:[Int] = []
+            while let p = iterator.next() {
+                steps.append(p)
         }
-
-        print(output)
+            XCTAssertEqual(steps, test.1, "NodeSetIterator should match expected sets")
+        }
     }
 
-    func testDirectedWalk() throws {
-        let nodes = ["A", "B", "C", "D", "E"]
-        let allEdges = [("A", "B"), ("A", "C"), ("B", "C"), ("C", "D"), ("D", "E"), ("E", "A")]
-        let graph = DirectedGraph(nodes: nodes, edges: allEdges)
+    func testDepthFirstSearch() {
+        //         1
+        //        / \
+        //       2   3
+        //      / \ / \
+        //     4   5   6
+        //    / \ / \ / \
+        //   7–––8–––9–––10
+        let nodes = Array(1...10).map { $0 }
+        let edges = [(1,2), (1,3),
+                     (2,4), (2,5), (3,5), (3,6),
+                     (4,7), (7,8), (4,8), (5,8), (8,9), (5,9), (6,9), (9,10), (6,10)]
+        let graph = UndirectedGraph(nodes: nodes, edges: edges)
 
-        let walkEdges = [("A", "B"), ("B", "C"), ("C", "D"), ("D", "E")]
-        let walk = DirectedWalk(walkEdges.map { DirectedEdge($0.0,$0.1)! })
-        XCTAssertTrue(Set(walk.edges).isSubset(of: graph.edges), "")
-        XCTAssertEqual(walk.count, 4, "The length of a walk should be the number of edges")
-        XCTAssertEqual(walk.nodes, ["A", "B", "C", "D", "E"])
-        print(walk)
+        let tests = [(1, [1,2,4,7,8,5,3,6,9,10]),
+                     (4, [4,2,1,3,5,8,7,9,6,10]),
+                     (5, [5,2,1,3,6,9,8,4,7,10])]
 
-        let loopEdges = [("A", "B"), ("B", "C"), ("C", "D"), ("D", "E"), ("E", "A")]
-        let loop = DirectedWalk(loopEdges.map { DirectedEdge($0.0,$0.1)! })
-        XCTAssertEqual(loop.nodes, ["A", "B", "C", "D", "E", "A"])
-        XCTAssertEqual(loop.start, loop.end, "Start and end of a loop should be the same")
-        print(loop)
+        for test in tests {
+            var iterator = DepthFirstSearch(graph: graph, from: test.0)
+            var steps:[Int] = []
+            while let p = iterator.next() {
+                steps.append(p)
+            }
+            XCTAssertEqual(steps, test.1, "DepthFirstSearch should match expected sets")
+        }
     }
 
 }
