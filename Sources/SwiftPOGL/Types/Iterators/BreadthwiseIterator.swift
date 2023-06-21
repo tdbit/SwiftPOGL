@@ -1,5 +1,5 @@
 //
-//  NodeSetIterator.swift
+//  BreadthwiseIterator.swift
 //  SwiftPOGL
 //
 //  Created by Tom Drummond on 6/19/23.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-/// A `NodeSetIterator` iterates over the nodes in a graph returning the set of nodes
+/// A `BreadthwiseIterator` iterates over the nodes in a graph returning the set of nodes
 /// that are connected to prior current set of nodes.  Each iteration returns a new
 /// set of unvisited nodes that are one step further away from the starting node.
-public struct NodeSetIterator<T: Graph>: IteratorProtocol {
+public struct BreadthwiseIterator<T: Graph>: IteratorProtocol {
     public typealias Element = Set<T.NodeType>
 
     private var graph: T
@@ -45,5 +45,21 @@ public struct NodeSetIterator<T: Graph>: IteratorProtocol {
         }
 
         return nextNodes
+    }
+}
+
+
+extension Graph {
+
+    /// Calculates the distance between two nodes in a graph using a breadth-first
+    /// search.  If the nodes are not connected then `nil` is returned.
+    func distance(between u: NodeType, and v: NodeType) -> Int? {
+        var iterator = BreadthwiseIterator(graph: self, from: u)
+        var distance = 0
+        while let layer = iterator.next() {
+            if layer.contains(v) { return distance }
+            distance += 1
+        }
+        return nil
     }
 }

@@ -42,13 +42,18 @@ final class SwiftPOGLIteratorTests: XCTestCase {
                      (5, [[5], [2,3,4,6,8,9], [1,7,10]])]
 
         for test in tests {
-            var iterator = NodeSetIterator(graph: graph, from: test.0)
+            var iterator = BreadthwiseIterator(graph: graph, from: test.0)
             var steps:[[Int]] = []
             while let p = iterator.next() {
                 steps.append(p.sorted())
             }
-            XCTAssertEqual(steps, test.1, "NodeSetIterator should match expected sets")
+            XCTAssertEqual(steps, test.1, "BreadthwiseIterator should match expected sets")
         }
+
+        XCTAssertEqual(graph.distance(between: 1, and: 1), 0, "A node's distance to itself is 0")
+        XCTAssertEqual(graph.distance(between: 1, and: 2), 1, "Adjacent nodes are 1 edge apart")
+        XCTAssertEqual(graph.distance(between: 1, and: 10), 3, "The distance between two nodes is the shortest number of edges between them")
+        XCTAssertEqual(graph.distance(between: 1, and: 0), nil, "The distance between two disconnected nodes is nil")
     }
 
     func testNodeSetIteratorBarbell() {
@@ -71,13 +76,16 @@ final class SwiftPOGLIteratorTests: XCTestCase {
                      (9, [[9], [7,8,10], [6], [5], [3,4], [2], [1]])
         ]
         for test in tests {
-            var iterator = NodeSetIterator(graph: graph, from: test.0)
+            var iterator = BreadthwiseIterator(graph: graph, from: test.0)
             var steps:[[Int]] = []
             while let p = iterator.next() {
                 steps.append(p.sorted())
             }
-            XCTAssertEqual(steps, test.1, "NodeSetIterator should match expected sets")
+            XCTAssertEqual(steps, test.1, "BreadthwiseIterator should match expected sets")
         }
+
+        XCTAssertEqual(graph.distance(between: 1, and: 5), 3, "The distance between two nodes is the shortest number of edges between them")
+        XCTAssertEqual(graph.distance(between: 1, and: 10), 7, "The distance between two nodes is the shortest number of edges between them")
     }
 
     func testQueue() throws {
@@ -118,7 +126,7 @@ final class SwiftPOGLIteratorTests: XCTestCase {
             while let p = iterator.next() {
                 steps.append(p)
         }
-            XCTAssertEqual(steps, test.1, "NodeSetIterator should match expected sets")
+            XCTAssertEqual(steps, test.1, "BreadthwiseIterator should match expected sets")
         }
     }
 
