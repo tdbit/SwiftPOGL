@@ -25,11 +25,10 @@ extension Int: Labelled {
     public var label: String { description }
 }
 
-
 // MARK: Convenience methods on Foundation collections
 
 extension Collection where Element: Labelled {
-    var labels:[String] {
+    var labels: [String] {
         map(\.label)
     }
 }

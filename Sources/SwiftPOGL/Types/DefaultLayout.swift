@@ -11,7 +11,7 @@ import Foundation
 open class DefaultLayout<T: Graph>: GraphLayout {
     public typealias GraphType = T
 
-    internal var positions:[GraphType.NodeType: CGPoint] = [:]
+    internal var positions: [GraphType.NodeType: CGPoint] = [:]
 
     public required init() {}
 
@@ -23,7 +23,7 @@ open class DefaultLayout<T: Graph>: GraphLayout {
         let borderWidth = 0.05 * max(frame.size.width, frame.size.height)
         let radius = min(frame.size.height, frame.size.width) / 2 - borderWidth
         let delta = CGFloat( 2.0 * Double.pi) / CGFloat(graph.nodes.count)
-        var theta:CGFloat = .zero
+        var theta: CGFloat = .zero
 
         for node in graph.nodes {
             let xOrigin = frame.origin.x + frame.size.width / 2

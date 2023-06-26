@@ -1,0 +1,16 @@
+disabled_rules:
+  - vertical_whitespace
+
+excluded:
+  - Tests
+  - Package.swift
+
+identifier_name:
+  excluded:
+    - uv
+    - u
+    - v
+    - i
+    - j
+    - x
+    - y

@@ -8,7 +8,7 @@
 import Foundation
 
 
-open class DirectedGraph<T:Node>: Digraph {
+open class DirectedGraph<T: Node>: Digraph {
     public typealias NodeType = T
 
     public typealias EdgeType = DirectedEdge<T>

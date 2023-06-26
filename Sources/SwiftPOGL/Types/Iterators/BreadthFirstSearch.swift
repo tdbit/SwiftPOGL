@@ -81,9 +81,9 @@ internal struct Queue<Element> {
         }
     }
 
-    private var head: Place<Element>? = nil
+    private var head: Place<Element>?
 
-    private var tail: Place<Element>? = nil
+    private var tail: Place<Element>?
 
     private var length: Int = 0
 
@@ -139,7 +139,7 @@ extension Queue where Element: Equatable {
 extension Queue: CustomStringConvertible {
     var description: String {
         var next = head
-        var array:[String] = []
+        var array: [String] = []
         while next != nil {
             array.append("\(next!.value)")
             next = next!.next

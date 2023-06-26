@@ -11,7 +11,7 @@ import Foundation
 public protocol Edge: Hashable {
 
     /// The type of the nodes that are connected by the `Edge`
-    associatedtype NodeType:Node
+    associatedtype NodeType: Node
 
     /// The first `Node` in the `Edge` or `Arc`. In an `Arc` this is the source or "from" node.
     var u: NodeType { get }
@@ -35,11 +35,10 @@ extension Edge {
     }
 }
 
-
 extension Edge {
 
     /// Returns whether an edge is incident on a node i.e. if the node is either of its endpoints.
-    @inlinable public func isIncident(on node:NodeType) -> Bool {
+    @inlinable public func isIncident(on node: NodeType) -> Bool {
         u == node || v == node
     }
 
@@ -57,7 +56,7 @@ extension Edge {
     /// If the edge contains the node this method returns the edge's other node.
     /// Returns nil if the edge doesn't contain the node provided.
     @inlinable public func neighbor(of node: NodeType) -> NodeType? {
-        switch(node) {
+        switch node {
         case u: return v
         case v: return u
         default: return nil

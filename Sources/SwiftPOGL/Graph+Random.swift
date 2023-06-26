@@ -55,7 +55,7 @@ public extension Graph where NodeType == String {
         let length = Array(1...12).first { Int(pow(Double(alphabet.count), Double($0))) >= n } ?? 12
         let bases = Array(0..<length).map { Int(pow(26.0, Double($0))) }.reversed()
 
-        var nodes:[String] = []
+        var nodes: [String] = []
         for i in 0..<n {
             let start = alphabet.startIndex
             let offsets = bases.map { (i / $0) % alphabet.count }

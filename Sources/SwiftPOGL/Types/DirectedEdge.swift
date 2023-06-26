@@ -8,7 +8,7 @@
 import Foundation
 
 /// A `DirectedEdge`
-public struct DirectedEdge<T:Node>:Arc {
+public struct DirectedEdge<T: Node>: Arc {
     public typealias NodeType = T
 
     public var u: T
@@ -25,7 +25,7 @@ public struct DirectedEdge<T:Node>:Arc {
 
 extension DirectedEdge: Reversible {
     public func reversed() -> DirectedEdge<T> {
-        Self(v,u)!
+        Self(v, u)!
     }
 }
 

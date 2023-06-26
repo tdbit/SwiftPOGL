@@ -16,8 +16,8 @@ extension Collection where Element: Edge {
     }
 
     /// Returns the set of nodes a collection of edges is connected to.
-    var nodes:Set<Element.NodeType> {
-        var nodes:Set<Element.NodeType> = []
+    var nodes: Set<Element.NodeType> {
+        var nodes: Set<Element.NodeType> = []
         forEach { edge in
             nodes.insert(edge.u)
             nodes.insert(edge.v)
@@ -27,6 +27,6 @@ extension Collection where Element: Edge {
 
    /// Returns the set of neighboring nodes to the given node from a collection of edges.
    func neighbors(of node: Element.NodeType) -> Set<Element.NodeType> {
-        Set(compactMap { $0.neighbor(of:node) })
+        Set(compactMap { $0.neighbor(of: node) })
     }
 }

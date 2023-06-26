@@ -8,7 +8,7 @@
 import Foundation
 
 
-open class UndirectedGraph<T:Node>: Graph {
+open class UndirectedGraph<T: Node>: Graph {
     public typealias NodeType = T
 
     public typealias EdgeType = UndirectedEdge<T>

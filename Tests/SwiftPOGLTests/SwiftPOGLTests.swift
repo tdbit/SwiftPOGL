@@ -11,15 +11,14 @@ import XCTest
 final class SwiftPOGLTests: XCTestCase {
 
     func testDirectedGraph() throws {
-        let toEdge = DirectedEdge(1,2)
-        let fromEdge = DirectedEdge(2,1)
+        let toEdge = DirectedEdge(1, 2)
+        let fromEdge = DirectedEdge(2, 1)
         XCTAssertNotEqual(toEdge, fromEdge, "Node order should matter in an directed graph")
     }
 
     func testReversedEdge() throws {
-        let toEdge = DirectedEdge(1,2)
-        let fromEdge = DirectedEdge(2,1)
-
+        let toEdge = DirectedEdge(1, 2)
+        let fromEdge = DirectedEdge(2, 1)
 
         XCTAssertEqual(toEdge, fromEdge?.reversed(), "A directed edge's reverse is the edge with the nodes swapped")
         XCTAssertEqual(fromEdge, toEdge?.reversed(), "A directed edge's reverse is the edge with the nodes swapped")
@@ -28,7 +27,7 @@ final class SwiftPOGLTests: XCTestCase {
 
     func testStringDirectedGraph() throws {
         let nodes = [1, 2, 3, 4, 4, 4]
-        let edges = [(1,2), (2,1), (3,1), (1,3), (4,1), (1,4), (1,4)]
+        let edges = [(1, 2), (2, 1), (3, 1), (1, 3), (4, 1), (1, 4), (1, 4)]
         let graph = DirectedGraph(nodes: nodes, edges: edges)
         XCTAssertEqual(graph.nodes.count, 4, "All nodes in a directed graph should be unique")
         XCTAssertEqual(graph.edges.count, 6, "")
@@ -36,8 +35,8 @@ final class SwiftPOGLTests: XCTestCase {
 
     func testReversedGraph() throws {
         let nodes = [1, 2, 3, 4]
-        let clockwiseEdges = [(1,2), (2,3), (3,4), (4,1)]
-        let anticlockwiseEdges = [(1,4), (4,3), (3,2), (2,1)]
+        let clockwiseEdges = [(1, 2), (2, 3), (3, 4), (4, 1)]
+        let anticlockwiseEdges = [(1, 4), (4, 3), (3, 2), (2, 1)]
 
         let clockwiseGraph = DirectedGraph(nodes: nodes, edges: clockwiseEdges)
         let anticlockwiseGraph = DirectedGraph(nodes: nodes, edges: anticlockwiseEdges)
@@ -47,11 +46,11 @@ final class SwiftPOGLTests: XCTestCase {
     }
 
     func testUndirectedGraph() throws {
-        let toEdge = UndirectedEdge(1,2)
-        let fromEdge = UndirectedEdge(2,1)
+        let toEdge = UndirectedEdge(1, 2)
+        let fromEdge = UndirectedEdge(2, 1)
         XCTAssertEqual(toEdge, fromEdge, "Node order should not matter in an undirected graph")
 
-        let graph = UndirectedGraph(nodes: [1, 2, 3, 3], edges: [(1,2), (2,3), (3,1), (3,1), (1,3)])
+        let graph = UndirectedGraph(nodes: [1, 2, 3, 3], edges: [(1, 2), (2, 3), (3, 1), (3, 1), (1, 3)])
         XCTAssertEqual(graph.nodes.count, 3, "Undirected graphs cannot contain two nodes with the same value")
         XCTAssertEqual(graph.edges.count, 3, "Undirected graphs cannot contain two edges with the same nodes")
 
@@ -67,8 +66,8 @@ final class SwiftPOGLTests: XCTestCase {
     }
 
     func testIncidence() throws {
-        let nodes = [1,2,3,4,5]
-        let edges = [(1,2), (1,3), (4,1), (4,5)]
+        let nodes = [1, 2, 3, 4, 5]
+        let edges = [(1, 2), (1, 3), (4, 1), (4, 5)]
         let graph = UndirectedGraph(nodes: nodes, edges: edges)
         let digraph = DirectedGraph(nodes: nodes, edges: edges)
 
@@ -80,8 +79,8 @@ final class SwiftPOGLTests: XCTestCase {
     }
 
     func testScale() throws {
-        let nodes = [1,2,3,4,5]
-        let edges = [(1,2), (1,3), (4,1), (4,5)]
+        let nodes = [1, 2, 3, 4, 5]
+        let edges = [(1, 2), (1, 3), (4, 1), (4, 5)]
         let graph = UndirectedGraph(nodes: nodes, edges: edges)
         let digraph = DirectedGraph(nodes: nodes, edges: edges)
 
@@ -114,7 +113,7 @@ final class SwiftPOGLTests: XCTestCase {
             for j in 1...graph.order {
                 let subgraph = graph.randomSubgraph(order: j)!
 
-                XCTAssertTrue(subgraph.edges.nodes.isSubset(of:subgraph.nodes), "The nodes of every edge must belong to the subgraph")
+                XCTAssertTrue(subgraph.edges.nodes.isSubset(of: subgraph.nodes), "The nodes of every edge must belong to the subgraph")
                 XCTAssertTrue(subgraph.nodes.isSubset(of: graph.nodes), "Every node in the subgraph must be in the supergraph")
                 XCTAssertTrue(subgraph.edges.isSubset(of: graph.edges), "Every edge in the subgraph must be in the supergraph")
             }

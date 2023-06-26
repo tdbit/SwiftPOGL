@@ -8,7 +8,7 @@
 import Foundation
 
 /// An `UndirectedEdge`
-public struct UndirectedEdge<T:Node>:Edge {
+public struct UndirectedEdge<T: Node>: Edge {
     public typealias NodeType = T
 
     public var u: T

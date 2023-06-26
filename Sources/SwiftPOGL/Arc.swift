@@ -29,7 +29,7 @@ extension Arc {
 extension Arc {
 
     /// Returns whether the nodes are the arc's start and end point (in that order)
-    public func joins(from u: NodeType, to v:NodeType) -> Bool {
+    public func joins(from u: NodeType, to v: NodeType) -> Bool {
         self.u == u && self.v == v
     }
 }

@@ -23,7 +23,7 @@ extension Graph {
     /// neighborhood of a node _includes_ the node & its immediate edges.  The open
     /// neighborhood of a node _excludes_ the node & its edges.
     public func neighborhood(of node: NodeType, closed: Bool = false) -> Self {
-        if(closed) {
+        if closed {
             let edges = edges[of: node]
             let nodes = edges.nodes
             return Self(nodes: nodes, edges: edges)

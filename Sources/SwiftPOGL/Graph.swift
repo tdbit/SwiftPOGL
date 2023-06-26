@@ -12,7 +12,7 @@ public protocol Graph: Equatable where NodeType == EdgeType.NodeType {
 
     /// A type conforming to `Node` that represents the endpoints of the edges
     /// (i.e. the nodes or vertices) in the graph.
-    associatedtype NodeType: Node
+    associatedtype NodeType
 
     /// A type that conforms to `Edge` representing the edges in the graph.
     associatedtype EdgeType: Edge

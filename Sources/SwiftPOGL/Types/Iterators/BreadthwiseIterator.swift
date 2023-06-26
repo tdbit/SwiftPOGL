@@ -35,11 +35,11 @@ public struct BreadthwiseIterator<T: Graph>: IteratorProtocol {
         queuedNodes.removeAll()
 
         graph.edges.forEach { edge in
-            if (nextNodes.contains(edge.u) && !visitedNodes.contains(edge.v)) {
+            if nextNodes.contains(edge.u) && !visitedNodes.contains(edge.v) {
                 queuedNodes.insert(edge.v)
             }
 
-            if (nextNodes.contains(edge.v) && !visitedNodes.contains(edge.u)) {
+            if nextNodes.contains(edge.v) && !visitedNodes.contains(edge.u) {
                 queuedNodes.insert(edge.u)
             }
         }

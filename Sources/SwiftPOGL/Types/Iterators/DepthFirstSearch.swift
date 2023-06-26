@@ -41,7 +41,7 @@ public struct DepthFirstSearch<T: Graph>: IteratorProtocol where T.NodeType: Equ
 
     private var visitedNodes: Set<T.NodeType>
 
-    private var queuedNodes: Array<T.NodeType>
+    private var queuedNodes: [T.NodeType]
 
     public init(graph: T, from node: T.NodeType? = nil, withPolicy policy: QueuingPolicy = .queueAllUnvisited) {
         self.graph = graph
