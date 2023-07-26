@@ -7,7 +7,14 @@
 
 import Foundation
 
-/// An `Edge` is an unordered pair of `Node` types.
+/// An unordered pair of nodes.
+/// 
+/// An `Edge` connects two nodes in a undirected `Graph`.  Each edge is uniquely
+/// defined by its two endpoints as multigraphs (i.e. graphs with multiple
+/// edges) are not allowed in SwiftPOGL.
+/// 
+/// - SeeAlso: ``Arc``
+/// - SeeAlso: ``Weighted``
 public protocol Edge: Hashable {
 
     /// The type of the nodes that are connected by the `Edge`
@@ -35,6 +42,7 @@ extension Edge {
     }
 }
 
+
 extension Edge {
 
     /// Returns whether an edge is incident on a node i.e. if the node is either of its endpoints.
@@ -45,12 +53,16 @@ extension Edge {
     /// Returns whether the edge is incident with another edge i.e. if either of the edge's
     /// endpoints are the same as the other edge's endpoints.
     @inlinable public func isIncident(with edge: Self) -> Bool {
-        u == edge.u || u == edge.v || v == edge.u || v == edge.v
+        self.u == edge.u ||
+        self.u == edge.v ||
+        self.v == edge.u ||
+        self.v == edge.v
     }
 
     /// Returns whether the nodes are the edge's endpoints (in either order)
     @inlinable public func joins(_ u: NodeType, _ v: NodeType) -> Bool {
-        (self.u == u && self.v == v) || (self.v == u && self.u == v)
+        (self.u == u && self.v == v) ||
+        (self.v == u && self.u == v)
     }
 
     /// If the edge contains the node this method returns the edge's other node.
