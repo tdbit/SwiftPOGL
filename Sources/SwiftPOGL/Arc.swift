@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// An `Arc` is an ordered pair of ``Node`` types.
+/// An ordered pair of nodes.
 public protocol Arc: Edge & Reversible {}
 
 

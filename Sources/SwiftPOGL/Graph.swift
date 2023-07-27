@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// A `Graph` is a set of Edges and Nodes.
+/// A collection of nodes and undirected edges.
 public protocol Graph: Equatable where NodeType == EdgeType.NodeType {
 
     /// A type conforming to `Node` that represents the endpoints of the edges

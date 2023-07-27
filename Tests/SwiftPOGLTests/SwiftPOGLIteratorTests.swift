@@ -1,5 +1,5 @@
 //
-//  SwiftPOGLTests.swift
+//  SwiftPOGLIteratorTests.swift
 //  SwiftPOGL
 //
 //  Created by Tom Drummond on 6/3/23.
