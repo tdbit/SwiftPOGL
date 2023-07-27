@@ -46,8 +46,8 @@ final class SwiftPOGLTests: XCTestCase {
     }
 
     func testUndirectedGraph() throws {
-        let toEdge = UndirectedEdge(1, 2)
-        let fromEdge = UndirectedEdge(2, 1)
+        let toEdge = UndirectedEdge(u: 1, v: 2)
+        let fromEdge = UndirectedEdge(u: 2, v: 1)
         XCTAssertEqual(toEdge, fromEdge, "Node order should not matter in an undirected graph")
 
         let graph = UndirectedGraph(nodes: [1, 2, 3, 3], edges: [(1, 2), (2, 3), (3, 1), (3, 1), (1, 3)])

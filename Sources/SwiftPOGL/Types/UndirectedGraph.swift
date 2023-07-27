@@ -24,7 +24,7 @@ open class UndirectedGraph<T: Node>: Graph {
 
     public required init(nodes: [NodeType], edges: [(NodeType, NodeType)]) {
         self.nodes = Set(nodes)
-        self.edges = Set(edges.compactMap { EdgeType($0.0, $0.1) })
+        self.edges = Set(edges.compactMap { EdgeType(u: $0.0, v: $0.1) })
     }
 }
 

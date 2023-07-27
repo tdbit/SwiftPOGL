@@ -15,7 +15,7 @@ public struct UndirectedEdge<T: Node>: Edge {
 
     public var v: T
 
-    public init?(_ u: T, _ v: T) {
+    public init?(u: T, v: T) {
         guard u != v else { return nil }
         self.u = u
         self.v = v
