@@ -115,6 +115,24 @@ public enum GraphFamily {
 }
 
 
+extension GraphFamily: CaseIterable {
+    /// All graph families.
+    public static var allCases: [GraphFamily] {
+        [.null, .path, .cycle, .star, .wheel, .prism, .mesh(m: 0, n: 0), .torus(m: 0, n: 0), .complete]
+    }
+
+    /// Simple graphs defined by a single parameter which is the number of nodes.
+    public static var simpleCases: [GraphFamily] {
+        [.null, .path, .cycle, .star, .wheel, .prism, .complete]
+    }
+
+    /// Graphs defined by two parameters which represent the number of nodes in different dimensions.
+    public static var parametricCases: [GraphFamily] {
+        [.mesh(m: 0, n: 0), .torus(m: 0, n: 0)]
+    }
+}
+
+
 extension Graph {
 
     public static func generate(_ family: GraphFamily, nodes: [NodeType]) -> Self {
