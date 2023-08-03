@@ -79,6 +79,19 @@ public enum GraphFamily {
     /// ```
     case prism
 
+    /// A graph nodes arranged in a tree structure with each node connected to
+    /// one parent node and `k` child nodes for a total of `n - 1` edges.
+    ///
+    /// ```
+    /// // e.g. k=3 =>
+    /// //         x
+    /// //        /|\
+    /// //       x x x
+    /// //      /|\ ...
+    /// //     x x x ...
+    /// ```
+    case tree(k: Int)
+
     /// A rectangular graph with `m * n` nodes where each node is connected to
     /// between 2 and 4 neighbors for a total of `2 * m * n - m - n` edges.
     ///
@@ -176,6 +189,20 @@ extension Graph {
                 edges.append((nodes[i], nodes[j]))                  // from node in cycle 1 to node in cycle 2
                 edges.append((nodes[i], nodes[(i + 1) % m]))        // from node in cycle 1 to next node in cycle 1
                 edges.append((nodes[j], nodes[(i + 1) % m + m]))    // from node in cycle 2 to next node in cycle 2
+            }
+            return Self(nodes: nodes, edges: edges)
+
+        case .tree(let k):
+            guard k > 0 else {
+                fatalError("Tree graphs must have at least one child per node.")
+            }
+
+            var edges: [(NodeType, NodeType)] = []
+            edges.reserveCapacity(k * (nodes.count - 1))
+
+            for i in 1..<nodes.count {
+                let parent = nodes[(i - 1) / k]
+                edges.append((parent, nodes[i]))
             }
             return Self(nodes: nodes, edges: edges)
 

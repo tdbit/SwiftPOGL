@@ -107,6 +107,32 @@ final class SwiftPOGLFamilyTests: XCTestCase {
         }
     }
 
+    func testTree() {
+        let pow = { (lhs: Int, _ rhs: Int) -> Int in
+            Int(Foundation.pow(Double(lhs), Double(rhs)))
+        }
+        let k = 3
+        let layers = 6
+        let count = (pow(k, layers) - 1)/(k - 1)
+        let nodes = Array(1...count)
+
+        let graph = UndirectedGraph.generate(.tree(k: k), nodes: nodes)
+        let digraph = DirectedGraph.generate(.tree(k: k), nodes: nodes)
+
+        XCTAssertEqual(graph.edges.count, (nodes.count - 1), "Tree graphs should have n - 1 edges.")
+        XCTAssertEqual(digraph.edges.count, (nodes.count - 1), "Tree digraphs should have n - 1 edges.")
+
+        for node in nodes[1..<(count - pow(k, layers - 1))] {
+            XCTAssertEqual(graph.neighbors(of: node).count, k + 1, "Non-leaf nodes in a complete tree graph should have k + 1 neighbors.")
+            XCTAssertEqual(digraph.neighbors(of: node).count, k + 1, "Non-leaf nodes in a complete tree digraph should have k + 1 neighbors.")
+        }
+
+        for node in nodes[(count - pow(k, layers - 1))...] {
+            XCTAssertEqual(graph.neighbors(of: node).count, 1, "Leaf nodes in a complete tree graph should have 1 neighbor.")
+            XCTAssertEqual(digraph.neighbors(of: node).count, 1, "Leaf nodes in a complete tree digraph should have 1 neighbor.")
+        }
+    }
+
     func testMesh() {
         let m = 5
         let n = 3
