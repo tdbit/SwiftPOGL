@@ -131,7 +131,7 @@ public enum GraphFamily {
 extension GraphFamily: CaseIterable {
     /// All graph families.
     public static var allCases: [GraphFamily] {
-        [.null, .path, .cycle, .star, .wheel, .prism, .mesh(m: 0, n: 0), .torus(m: 0, n: 0), .complete]
+        [.null, .path, .cycle, .star, .wheel, .prism, .tree(k: 0), .mesh(m: 0, n: 0), .torus(m: 0, n: 0), .complete]
     }
 
     /// Simple graphs defined by a single parameter which is the number of nodes.
@@ -141,7 +141,7 @@ extension GraphFamily: CaseIterable {
 
     /// Graphs defined by two parameters which represent the number of nodes in different dimensions.
     public static var parametricCases: [GraphFamily] {
-        [.mesh(m: 0, n: 0), .torus(m: 0, n: 0)]
+        [.tree(k: 0), .mesh(m: 0, n: 0), .torus(m: 0, n: 0)]
     }
 }
 
